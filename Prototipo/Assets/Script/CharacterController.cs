@@ -16,9 +16,9 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         float hMovement = Input.GetAxis("Horizontal") * movementSpeed / 2 ;
-        float vMovement = Input.GetAxis("Vertical") * movementSpeed;
+        //float vMovement = Input.GetAxis("Vertical") * movementSpeed;
 
-        transform.Translate(new Vector3(hMovement, 0,  vMovement) * Time.deltaTime);
+        transform.Translate(new Vector3(hMovement, 0, movementSpeed) * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
