@@ -8,13 +8,19 @@ public class GameManager : MonoBehaviour
 {
     //menu pausa
     public GameObject menu;
-    public GameObject menuAdio;
+    public GameObject menuAudio;
     public static bool GameIsPaused;
 
     //counter score
     private GameObject player;
     public Text uiDistance;
 
+    //menu start
+    public GameObject startMenu;
+    public int countdownTime;
+    public Text countdownDisplay;
+
+    //player
     public GameObject Player { get => player; set => player = value; }
 
     // Start is called before the first frame update
@@ -26,11 +32,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //counter score
-        int distance = Mathf.RoundToInt(Player.transform.position.z);
-        uiDistance.text = distance.ToString() + " m";
-
-
         //se pressionar esc pausa
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -43,6 +44,14 @@ public class GameManager : MonoBehaviour
                 Pause();
             }
         }
+
+        if (!CountdownController.isGameStarted)
+            return;
+        //counter score
+        int distance = Mathf.RoundToInt(Player.transform.position.z);
+        uiDistance.text = distance.ToString() + " m";
+
+
     }
 
     public void Resume()
@@ -50,7 +59,7 @@ public class GameManager : MonoBehaviour
         GameIsPaused = false;
         Time.timeScale = 1f;
         menu.SetActive(false);
-        menuAdio.SetActive(false);
+        menuAudio.SetActive(false);
     }
 
     void Pause()
@@ -68,7 +77,7 @@ public class GameManager : MonoBehaviour
     public void OnAudioClick()
     {
         GameIsPaused = true;
-        menuAdio.SetActive(true);
+        menuAudio.SetActive(true);
         menu.SetActive(false);
     }
 
@@ -80,7 +89,7 @@ public class GameManager : MonoBehaviour
     public void onBackclick()
     {
         GameIsPaused = true;
-        menuAdio.SetActive(false);
+        menuAudio.SetActive(false);
         menu.SetActive(true);
     }
 }

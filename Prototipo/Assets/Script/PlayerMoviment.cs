@@ -28,6 +28,9 @@ public class PlayerMoviment : MonoBehaviour
 
     private void Update()
     {
+        if (!CountdownController.isGameStarted)
+            return;
+
         direction.z = fowardSpeed;
 
 
@@ -93,11 +96,15 @@ public class PlayerMoviment : MonoBehaviour
 
     private void Jump()
     {
+        if (!CountdownController.isGameStarted)
+            return;
         direction.y = jumpForce;
     }
 
     private void FixedUpdate()
     {
+        if (!CountdownController.isGameStarted)
+            return;
         controller.Move(direction * Time.deltaTime);
     }
 
