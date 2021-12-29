@@ -20,36 +20,60 @@ public class PlayerMoviment : MonoBehaviour
     public float jumpForce = 0;
     public float gravity = -20;
 
+    private bool isCoroutineRunning;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        // animator.SetBool("isRunning", true);
+
 
     }
 
     private void Update()
     {
-        if (!CountdownController.isGameStarted)
-            return;
 
+        if (!CountdownController.isGameStarted)
+        {
+            animator.SetBool("isRunning", false);
+            return;
+        }
+
+        if (Mathf.RoundToInt(transform.position.z) % 3 == 0)
+        {
+            if (fowardSpeed <= 40)
+                fowardSpeed += 0.001f;
+        }
         direction.z = fowardSpeed;
 
 
         if (controller.isGrounded)
-            {
+        {
             animator.SetBool("isRunning", true);
+
+            // animator.SetBool("isRunning", true);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-               // animator.SetBool("isRunning", false);
-                animator.SetTrigger("isJumping");
+                if (isCoroutineRunning)
+                    return;
                 animator.SetBool("isRunning", false);
+                animator.SetTrigger("isJumping");
+                //animator.SetBool("isRunning", false);
 
                 Jump();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
+                if (isCoroutineRunning)
+                    return;
                 animator.SetTrigger("isRolling");
-                //animator.SetBool("isRolling", false);
+
+
+                StartCoroutine(delayRoll());
+                isCoroutineRunning = true;
+
+                //animator.SetBool("isRolling", true);
 
             }
             //direction.y = -1;
@@ -91,9 +115,15 @@ public class PlayerMoviment : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.fixedDeltaTime);
 
-        
-    }
 
+    }
+    IEnumerator delayRoll()
+    {
+        yield return new WaitForSeconds(1f);
+        isCoroutineRunning = false;
+
+
+    }
     private void Jump()
     {
         if (!CountdownController.isGameStarted)
