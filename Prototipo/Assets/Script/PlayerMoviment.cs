@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMoviment : MonoBehaviour
 {
+    public Animator animator;
     private CharacterController controller;
 
     public SpawnManager spawnManager;
@@ -22,19 +23,31 @@ public class PlayerMoviment : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+
     }
 
     private void Update()
     {
         direction.z = fowardSpeed;
 
-        
 
         if (controller.isGrounded)
             {
+            animator.SetBool("isRunning", true);
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
+               // animator.SetBool("isRunning", false);
+                animator.SetTrigger("isJumping");
+                animator.SetBool("isRunning", false);
+
                 Jump();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                animator.SetTrigger("isRolling");
+                //animator.SetBool("isRolling", false);
+
             }
             //direction.y = -1;
         }
