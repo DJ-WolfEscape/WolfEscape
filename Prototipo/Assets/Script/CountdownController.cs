@@ -34,8 +34,9 @@ public class CountdownController : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            if (isCoroutineRunning)
+            if (isCoroutineRunning || isGameStarted)
                 return;
+
             StartCoroutine(CountdownToStart());
             isCoroutineRunning = true;
             countdownDisplay.gameObject.SetActive(true);

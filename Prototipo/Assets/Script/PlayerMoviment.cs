@@ -20,6 +20,8 @@ public class PlayerMoviment : MonoBehaviour
     public float gravity = -20;
 
     private bool isCoroutineRunning;
+    public float slideDuration = 1.0f;
+    private bool isRolling = false;
 
     private void Start()
     {
@@ -44,7 +46,7 @@ public class PlayerMoviment : MonoBehaviour
                 fowardSpeed += 0.00005f;
         }
         direction.z = fowardSpeed;
-
+        animator.SetBool("isGrounded", controller.isGrounded);
 
         if (controller.isGrounded)
         {
@@ -54,28 +56,18 @@ public class PlayerMoviment : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("salto!");
-                if (isCoroutineRunning)
-                {
-                    Debug.Log("espera");
-                    return;
-
-                }
-                animator.SetBool("isRunning", false);
-                animator.SetTrigger("isJumping");
                 //animator.SetBool("isRunning", false);
+                if(isRolling)
+                    return;
+                if (isCoroutineRunning)
+                    return;
 
                 Jump();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                if (isCoroutineRunning)
-                    return;
-                animator.SetTrigger("isRolling");
-
-
                 StartCoroutine(delayRoll());
-                isCoroutineRunning = true;
+
 
                 //animator.SetBool("isRolling", true);
 
@@ -140,10 +132,20 @@ public class PlayerMoviment : MonoBehaviour
     }
     IEnumerator delayRoll()
     {
-        yield return new WaitForSeconds(1f);
-        isCoroutineRunning = false;
+        isRolling = true;
+        animator.SetBool("isRolling", true);
+        yield return new WaitForSeconds(0.25f / Time.timeScale);
+        controller.center = new Vector3(0, -0.5f, 0);
+        controller.height = 1;
 
+        yield return new WaitForSeconds((slideDuration - 0.25f) / Time.timeScale);
 
+        animator.SetBool("isRolling", false);
+
+        controller.center = Vector3.zero;
+        controller.height = 2;
+
+        isRolling = false;
     }
     private void Jump()
     {
@@ -154,7 +156,13 @@ public class PlayerMoviment : MonoBehaviour
         //    return;
 
         //}
-        direction.y = jumpForce;
+        animator.SetTrigger("isJumping");
+        controller.center = Vector3.zero;
+        controller.height = 2;
+        isRolling = false;
+
+        direction.y = Mathf.Sqrt(jumpForce * 2 * -gravity);
+        //direction.y = jumpForce;
     }
 
     private void FixedUpdate()
