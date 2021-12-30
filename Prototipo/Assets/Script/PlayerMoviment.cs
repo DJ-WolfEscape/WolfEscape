@@ -142,8 +142,8 @@ public class PlayerMoviment : MonoBehaviour
 
         animator.SetBool("isRolling", false);
 
-        controller.center = Vector3.zero;
-        controller.height = 2;
+        controller.center = new Vector3(0,1,0);
+        controller.height = 3;
 
         isRolling = false;
     }
@@ -157,8 +157,8 @@ public class PlayerMoviment : MonoBehaviour
 
         //}
         animator.SetTrigger("isJumping");
-        controller.center = Vector3.zero;
-        controller.height = 2;
+        controller.center = new Vector3(0, 1, 0);
+        controller.height = 3;
         isRolling = false;
 
         direction.y = Mathf.Sqrt(jumpForce * 2 * -gravity);
