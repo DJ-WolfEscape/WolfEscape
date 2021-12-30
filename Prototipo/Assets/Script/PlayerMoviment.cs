@@ -13,7 +13,6 @@ public class PlayerMoviment : MonoBehaviour
     private Vector3 direction;
 
     public float fowardSpeed;
-
     public int desiredLane = 1; // 0 : left, 1: middle , 2: right
     public float laneDistance = 4; // distance between  two lanes
 
@@ -42,7 +41,7 @@ public class PlayerMoviment : MonoBehaviour
         if (Mathf.RoundToInt(transform.position.z) % 3 == 0)
         {
             if (fowardSpeed <= 40)
-                fowardSpeed += 0.001f;
+                fowardSpeed += 0.00005f;
         }
         direction.z = fowardSpeed;
 
@@ -55,8 +54,13 @@ public class PlayerMoviment : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                Debug.Log("salto!");
                 if (isCoroutineRunning)
+                {
+                    Debug.Log("espera");
                     return;
+
+                }
                 animator.SetBool("isRunning", false);
                 animator.SetTrigger("isJumping");
                 //animator.SetBool("isRunning", false);
@@ -86,6 +90,7 @@ public class PlayerMoviment : MonoBehaviour
         // gather input on which lane we should be
         if (Input.GetKeyDown(KeyCode.A))
         {
+
             desiredLane--;
             if (desiredLane == -1)
             {
@@ -94,6 +99,7 @@ public class PlayerMoviment : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
+
             desiredLane++;
             if (desiredLane == 3)
             {
@@ -107,13 +113,28 @@ public class PlayerMoviment : MonoBehaviour
         {
             targetPosition += Vector3.left * laneDistance;
 
+
         }
         else if (desiredLane == 2)
         {
             targetPosition += Vector3.right * laneDistance;
+
         }
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.fixedDeltaTime);
+        // transform.position = Vector3.Lerp(transform.position, targetPosition, 70 * Time.fixedDeltaTime);
+        // controller.center = controller.center;
+
+        if (transform.position != targetPosition)
+        {
+            Vector3 diff = targetPosition - transform.position;
+            Vector3 moveDir = diff.normalized * 30 * Time.deltaTime;
+            if (moveDir.sqrMagnitude < diff.magnitude)
+                controller.Move(moveDir);
+            else
+                controller.Move(diff);
+        }
+
+        controller.Move(direction * Time.deltaTime);
 
 
     }
@@ -126,8 +147,13 @@ public class PlayerMoviment : MonoBehaviour
     }
     private void Jump()
     {
-        if (!CountdownController.isGameStarted)
-            return;
+        //if (!CountdownController.isGameStarted)
+        //{
+        //    Debug.Log("espera");
+
+        //    return;
+
+        //}
         direction.y = jumpForce;
     }
 
