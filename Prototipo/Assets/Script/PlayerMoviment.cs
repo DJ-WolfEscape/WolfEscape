@@ -66,6 +66,8 @@ public class PlayerMoviment : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
+                if (isRolling)
+                    return;
                 StartCoroutine(delayRoll());
 
 
