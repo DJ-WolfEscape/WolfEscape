@@ -135,7 +135,7 @@ public class PlayerMoviment : MonoBehaviour
         isRolling = true;
         animator.SetBool("isRolling", true);
         yield return new WaitForSeconds(0.25f / Time.timeScale);
-        controller.center = new Vector3(0, -0.5f, 0);
+        controller.center = new Vector3(0, 0f, 0);
         controller.height = 1;
 
         yield return new WaitForSeconds((slideDuration - 0.25f) / Time.timeScale);
