@@ -19,9 +19,13 @@ public class RoadSpawner : MonoBehaviour
     public void MoveRoads()
     {
         GameObject moveroad = roads[0];
+        GameObject road = roads[0].gameObject;
+        Destroy(road);
         roads.Remove(moveroad);
+        GameObject x = Instantiate(moveroad);
+
         float newZ = roads[roads.Count - 1].transform.position.z + offset;
-        moveroad.transform.position = new Vector3(0, 0, newZ);
-        roads.Add(moveroad);
+        x.transform.position = new Vector3(0, 0, newZ);
+        roads.Add(x);
     }
 }

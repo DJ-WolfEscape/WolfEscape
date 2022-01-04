@@ -23,6 +23,8 @@ public class PlayerMoviment : MonoBehaviour
     public float slideDuration = 1.0f;
     private bool isRolling = false;
 
+    public string spawnerTriggerTag;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -176,7 +178,14 @@ public class PlayerMoviment : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        spawnManager.SpawnTriggerEntered();
+        if (other.tag == "Cheese")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("colidiu");
+        }else if (other.tag == "SpawnTrigger")
+        {
+            spawnManager.SpawnTriggerEntered();
+        }
     }
 
 
