@@ -180,12 +180,26 @@ public class PlayerMoviment : MonoBehaviour
     {
         if (other.tag == "Cheese")
         {
-            Destroy(other.gameObject);
+            other.gameObject.active = false;
+            StartCoroutine(RespawnCoin(other.gameObject));
+            //Destroy(other.gameObject);
+            //Instantiate(other.gameObject);
+
             Debug.Log("colidiu");
         }else if (other.tag == "SpawnTrigger")
         {
             spawnManager.SpawnTriggerEntered();
         }
+    }
+
+    IEnumerator RespawnCoin(GameObject gameObject)
+    {
+
+         yield return new WaitForSeconds(1f);
+        Debug.Log("ok");
+        gameObject.SetActive(true);
+
+
     }
 
 
