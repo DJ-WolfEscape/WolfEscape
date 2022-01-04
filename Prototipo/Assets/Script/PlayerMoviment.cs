@@ -7,7 +7,7 @@ public class PlayerMoviment : MonoBehaviour
 {
     public Animator animator;
     private CharacterController controller;
-
+    public GameManager gameManager;
     public SpawnManager spawnManager;
 
     private Vector3 direction;
@@ -180,6 +180,7 @@ public class PlayerMoviment : MonoBehaviour
     {
         if (other.tag == "Cheese")
         {
+            gameManager.SendMessage("AtualizarContador");
             other.gameObject.active = false;
             StartCoroutine(RespawnCoin(other.gameObject));
             //Destroy(other.gameObject);

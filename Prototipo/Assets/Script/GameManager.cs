@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject startMenu;
     public int countdownTime;
     public Text countdownDisplay;
+    public Text scoreCoins;
+
+    public int counterCoins = 0;
 
     //player
     public GameObject Player { get => player; set => player = value; }
@@ -50,7 +53,14 @@ public class GameManager : MonoBehaviour
         //counter score
         int distance = Mathf.RoundToInt(Player.transform.position.z);
         uiDistance.text = distance.ToString() + " m";
+        scoreCoins.text = counterCoins.ToString();
 
+
+    }
+
+    public void AtualizarContador()
+    {
+        counterCoins++;
 
     }
 
