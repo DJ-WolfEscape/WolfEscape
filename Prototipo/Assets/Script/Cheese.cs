@@ -13,7 +13,7 @@ public class Cheese : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(20 * Time.deltaTime, 0, 0);
+        transform.Rotate(40 * Time.deltaTime, 0, 0);
     }
 
    
