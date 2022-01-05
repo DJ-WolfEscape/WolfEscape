@@ -44,6 +44,24 @@ public class CountdownController : MonoBehaviour
         }
     }
 
+    public void PerdeuJogo()
+    {
+        isGameStarted = false;
+        Debug.Log(isGameStarted);
+        startDisplay.SetActive(true);
+        countdownDisplay.gameObject.SetActive(false);
+        isCoroutineRunning = false;
+        if (Input.anyKey)
+        {
+            if (isCoroutineRunning || isGameStarted)
+                return;
+
+            StartCoroutine(CountdownToStart());
+            isCoroutineRunning = true;
+            countdownDisplay.gameObject.SetActive(true);
+            startText.gameObject.SetActive(false);
+        }
+    }
     IEnumerator CountdownToStart()
     {
         while(countdownTime > 0)

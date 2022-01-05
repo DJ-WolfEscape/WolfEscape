@@ -11,7 +11,7 @@ public class PlayerMoviment : MonoBehaviour
     public SpawnManager spawnManager;
 
     private Vector3 direction;
-
+    private Boolean isPlayerDead = false;
     public float fowardSpeed;
     public int desiredLane = 1; // 0 : left, 1: middle , 2: right
     public float laneDistance = 4; // distance between  two lanes
@@ -25,114 +25,122 @@ public class PlayerMoviment : MonoBehaviour
 
     public string spawnerTriggerTag;
 
+    private AudioSource audioSource;
+    public AudioClip[] audioClip;
+
+
+    public GameObject perdeuJogo;
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         // animator.SetBool("isRunning", true);
-
+        audioSource = GetComponent<AudioSource>();
+        animator.SetBool("isDead", false);
 
     }
 
     private void Update()
     {
-
-        if (!CountdownController.isGameStarted)
+        if (!isPlayerDead)
         {
-            animator.SetBool("isRunning", false);
-            return;
-        }
-
-        if (Mathf.RoundToInt(transform.position.z) % 3 == 0)
-        {
-            if (fowardSpeed <= 40)
-                fowardSpeed += 0.00005f;
-        }
-        direction.z = fowardSpeed;
-        animator.SetBool("isGrounded", controller.isGrounded);
-
-        if (controller.isGrounded)
-        {
-            animator.SetBool("isRunning", true);
-
-            // animator.SetBool("isRunning", true);
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!CountdownController.isGameStarted)
             {
-                //animator.SetBool("isRunning", false);
-                if(isRolling)
-                    return;
-                if (isCoroutineRunning)
-                    return;
-
-                Jump();
+                animator.SetBool("isRunning", false);
+                return;
             }
-            if (Input.GetKeyDown(KeyCode.S))
+
+            if (Mathf.RoundToInt(transform.position.z) % 3 == 0)
             {
-                if (isRolling)
-                    return;
-                StartCoroutine(delayRoll());
-
-
-                //animator.SetBool("isRolling", true);
-
+                if (fowardSpeed <= 40)
+                    fowardSpeed += 0.00005f;
             }
-            //direction.y = -1;
-        }
-        else
-        {
-            direction.y += gravity * Time.deltaTime;
-        }
+            direction.z = fowardSpeed;
+            animator.SetBool("isGrounded", controller.isGrounded);
 
-        // gather input on which lane we should be
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-
-            desiredLane--;
-            if (desiredLane == -1)
+            if (controller.isGrounded)
             {
-                desiredLane = 0;
+                animator.SetBool("isRunning", true);
+
+                // animator.SetBool("isRunning", true);
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    //animator.SetBool("isRunning", false);
+                    if (isRolling)
+                        return;
+                    if (isCoroutineRunning)
+                        return;
+
+                    Jump();
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    if (isRolling)
+                        return;
+                    StartCoroutine(delayRoll());
+
+
+                    //animator.SetBool("isRolling", true);
+
+                }
+                //direction.y = -1;
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-
-            desiredLane++;
-            if (desiredLane == 3)
-            {
-                desiredLane = 2;
-            }
-        }
-
-        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
-
-        if (desiredLane == 0)
-        {
-            targetPosition += Vector3.left * laneDistance;
-
-
-        }
-        else if (desiredLane == 2)
-        {
-            targetPosition += Vector3.right * laneDistance;
-
-        }
-
-        // transform.position = Vector3.Lerp(transform.position, targetPosition, 70 * Time.fixedDeltaTime);
-        // controller.center = controller.center;
-
-        if (transform.position != targetPosition)
-        {
-            Vector3 diff = targetPosition - transform.position;
-            Vector3 moveDir = diff.normalized * 30 * Time.deltaTime;
-            if (moveDir.sqrMagnitude < diff.magnitude)
-                controller.Move(moveDir);
             else
-                controller.Move(diff);
+            {
+                direction.y += gravity * Time.deltaTime;
+            }
+
+            // gather input on which lane we should be
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+
+                desiredLane--;
+                if (desiredLane == -1)
+                {
+                    desiredLane = 0;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+
+                desiredLane++;
+                if (desiredLane == 3)
+                {
+                    desiredLane = 2;
+                }
+            }
+
+            Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+
+            if (desiredLane == 0)
+            {
+                targetPosition += Vector3.left * laneDistance;
+
+
+            }
+            else if (desiredLane == 2)
+            {
+                targetPosition += Vector3.right * laneDistance;
+
+            }
+
+            // transform.position = Vector3.Lerp(transform.position, targetPosition, 70 * Time.fixedDeltaTime);
+            // controller.center = controller.center;
+
+            if (transform.position != targetPosition)
+            {
+                Vector3 diff = targetPosition - transform.position;
+                Vector3 moveDir = diff.normalized * 30 * Time.deltaTime;
+                if (moveDir.sqrMagnitude < diff.magnitude)
+                    controller.Move(moveDir);
+                else
+                    controller.Move(diff);
+            }
+
+            controller.Move(direction * Time.deltaTime);
+
+
         }
-
-        controller.Move(direction * Time.deltaTime);
-
-
     }
     IEnumerator delayRoll()
     {
@@ -160,6 +168,7 @@ public class PlayerMoviment : MonoBehaviour
         //    return;
 
         //}
+        audioSource.PlayOneShot(audioClip[0]);
         animator.SetTrigger("isJumping");
         controller.center = new Vector3(0, 1, 0);
         controller.height = 3;
@@ -180,6 +189,8 @@ public class PlayerMoviment : MonoBehaviour
     {
         if (other.tag == "Cheese")
         {
+            audioSource.PlayOneShot(audioClip[1]);
+
             gameManager.SendMessage("AtualizarContador");
             other.gameObject.active = false;
             StartCoroutine(RespawnCoin(other.gameObject));
@@ -191,8 +202,52 @@ public class PlayerMoviment : MonoBehaviour
         {
             spawnManager.SpawnTriggerEntered();
         }
+        else
+        {
+            isPlayerDead = false;
+            animator.SetBool("isRolling", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isDead", true);
+
+        }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("bati");
+        if (collision.gameObject.tag == "Cheese")
+        {
+
+        }
+        else if (collision.gameObject.tag == "SpawnTrigger")
+        {
+
+        }
+        else
+        {
+
+            animator.SetBool("isRolling", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isDead", true);
+        }
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.gameObject.tag != "chao")
+        {
+            if (hit.collider.gameObject.tag != "Cheese")
+            {
+                Debug.Log(hit.collider.gameObject.tag);
+                isPlayerDead = true;
+                animator.SetBool("isRolling", false);
+                animator.SetBool("isRunning", false);
+                animator.SetBool("isDead", true);
+                perdeuJogo.SendMessage("PerdeuJogo");
+            }
+        }
+
+
+    }
     IEnumerator RespawnCoin(GameObject gameObject)
     {
 
