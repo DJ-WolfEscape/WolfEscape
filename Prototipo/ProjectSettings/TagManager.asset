@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnTrigger
   - Cheese
+  - chao
   layers:
   - Default
   - TransparentFX
