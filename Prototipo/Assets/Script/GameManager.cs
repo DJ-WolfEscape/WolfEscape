@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,15 @@ public class GameManager : MonoBehaviour
     public Text bestScoreUI;
     int bestScore = 0;
     int distance = 0;
+
+    // Audio
+    public AudioMixer mixer;
+    
+
+    public Slider masterSlider;
+    public Slider musicSlider;
+    public Slider soundSlider;
+
     //player
     public GameObject Player { get => player; set => player = value; }
 
@@ -42,6 +52,13 @@ public class GameManager : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         bestScoreUI.text = "Your best: " + PlayerPrefs.GetInt("HighScore",0).ToString();
+        mixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("masterVol", 0));
+        mixer.SetFloat("MusicVol", PlayerPrefs.GetFloat("musicVol", 0));
+        mixer.SetFloat("PlayerSoundVol", PlayerPrefs.GetFloat("soundFX", 0));
+
+        masterSlider.value = PlayerPrefs.GetFloat("masterVol", 0);
+        musicSlider.value = PlayerPrefs.GetFloat("musicVol", 0);
+        soundSlider.value = PlayerPrefs.GetFloat("soundFX", 0);
     }
 
     // Update is called once per frame
@@ -153,4 +170,28 @@ public class GameManager : MonoBehaviour
     {
         perdeuJogo = false;
     }
+
+    // Audio menu
+
+    public void setMasterVolume(float volume)
+    {
+        mixer.SetFloat("MasterVol", volume);
+        PlayerPrefs.SetFloat("masterVol", volume);
+        PlayerPrefs.Save();
+    }
+
+    public void setSoundVolume(float volume)
+    {
+        mixer.SetFloat("MusicVol", volume);
+        PlayerPrefs.SetFloat("musicVol", volume);
+        PlayerPrefs.Save();
+    }
+
+    public void setSoundFXVolume(float volume)
+    {
+        mixer.SetFloat("PlayerSoundVol", volume);
+        PlayerPrefs.SetFloat("soundFX", volume);
+        PlayerPrefs.Save();
+    }
+
 }

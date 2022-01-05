@@ -140,7 +140,7 @@ public class PlayerMoviment : MonoBehaviour
 
         }
 
-        // transform.position = Vector3.Lerp(transform.position, targetPosition, 70 * Time.fixedDeltaTime);
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, 70 * Time.fixedDeltaTime);
         // controller.center = controller.center;
 
         if (transform.position != targetPosition)
@@ -229,7 +229,6 @@ public class PlayerMoviment : MonoBehaviour
     {
         isCourotiningDead = true;
         gameManager.SendMessage("GameOver");
-
         yield return new WaitForSeconds(2f);
         isCourotiningDead = false;
     }
