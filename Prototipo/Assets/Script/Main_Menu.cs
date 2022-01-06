@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Main_Menu : MonoBehaviour
 {
+    public AudioSource audio;
+    private bool isMuted = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,5 +27,20 @@ public class Main_Menu : MonoBehaviour
     public void onLeave()
     {
         Application.Quit();
+    }
+
+    public void onMuteClick()
+    {
+        if (isMuted == true)
+        {
+            isMuted = false;
+            audio.mute = false;
+        }
+        else
+        {
+            isMuted = true;
+            audio.mute = true;
+        }
+        
     }
 }
