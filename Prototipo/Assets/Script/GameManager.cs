@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     //menu pausa
     public GameObject menu;
     public GameObject menuAudio;
+    public GameObject menuGraphics;
+    public GameObject snow;
+    private int estaNevar;
+    public Toggle snowParticles;
     public GameObject menuLose;
     public SceneAsset game;
     public static bool GameIsPaused;
@@ -50,12 +54,26 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        perdeuJogo = false;
+
         Player = GameObject.Find("Player");
         bestScoreUI.text = "Your best: " + PlayerPrefs.GetInt("HighScore",0).ToString();
         mixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("masterVol", 0));
         mixer.SetFloat("MusicVol", PlayerPrefs.GetFloat("musicVol", 0));
         mixer.SetFloat("PlayerSoundVol", PlayerPrefs.GetFloat("soundFX", 0));
+        estaNevar = PlayerPrefs.GetInt("nevar", 0);
+        if(estaNevar == 1)
+        {
+            snow.SetActive(true);
+            snowParticles.isOn = false;
 
+        }
+        else
+        {
+            snow.SetActive(false);
+            snowParticles.isOn = true;
+
+        }
         masterSlider.value = PlayerPrefs.GetFloat("masterVol", 0);
         musicSlider.value = PlayerPrefs.GetFloat("musicVol", 0);
         soundSlider.value = PlayerPrefs.GetFloat("soundFX", 0);
@@ -64,6 +82,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        estaNevar = PlayerPrefs.GetInt("nevar", 0);
+        if (estaNevar == 1)
+        {
+            snow.SetActive(true);
+
+        }
+        else
+        {
+            snow.SetActive(false);
+
+        }
         if (perdeuJogo)
             return;
         //se pressionar esc pausa
@@ -100,6 +129,8 @@ public class GameManager : MonoBehaviour
         GameIsPaused = false;
         Time.timeScale = 1f;
         menu.SetActive(false);
+        menuGraphics.SetActive(false);
+
         menuAudio.SetActive(false);
     }
 
@@ -121,17 +152,42 @@ public class GameManager : MonoBehaviour
         menuAudio.SetActive(true);
         menu.SetActive(false);
     }
+    public void OnGraphicsClick()
+    {
+        GameIsPaused = true;
+        menuGraphics.SetActive(true);
+        menu.SetActive(false);
+    }
 
     public void OnLeaveClick()
     {
         Debug.Log("Leaving...");
+        SceneManager.LoadScene("Menu");
     }
 
     public void onBackclick()
     {
         GameIsPaused = true;
         menuAudio.SetActive(false);
+        menuGraphics.SetActive(false);
+
         menu.SetActive(true);
+    }
+
+    public void onSnowParticlesClick()
+    {
+        if(PlayerPrefs.GetInt("nevar", 0) == 1)
+        {
+            estaNevar = 0;
+            PlayerPrefs.SetInt("nevar", 0);
+        }
+        else
+        {
+            estaNevar = 1;
+            PlayerPrefs.SetInt("nevar", 1);
+
+        }
+
     }
 
 
@@ -141,7 +197,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("teste");
         SceneManager.LoadScene(game.name);
     }
 

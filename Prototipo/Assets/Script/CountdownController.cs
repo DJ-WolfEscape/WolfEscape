@@ -28,6 +28,7 @@ public class CountdownController : MonoBehaviour
         startDisplay.SetActive(true);
         countdownDisplay.gameObject.SetActive(false);
         isCoroutineRunning = false;
+
     }
 
     // Update is called once per frame
