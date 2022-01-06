@@ -82,6 +82,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(perdeuJogo== true)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartGame();
+            }
+        }
         estaNevar = PlayerPrefs.GetInt("nevar", 0);
         if (estaNevar == 1)
         {
