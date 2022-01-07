@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6699006679444054636, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
 --- !u!1 &5994351190261121137 stripped
@@ -218,7 +222,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3545508, y: 1.5213625, z: 1.5790304}
+  m_Size: {x: 3.3545508, y: 1.2, z: 1.5790304}
   m_Center: {x: 0.0013058782, y: 0.5761652, z: 0.013951719}
 --- !u!1001 &1313275306586996593
 PrefabInstance:
@@ -287,6 +291,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6699006679444054636, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
 --- !u!4 &5279536557203687179 stripped
@@ -310,7 +318,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3545508, y: 1.5213625, z: 1.5790304}
+  m_Size: {x: 3.3545508, y: 1.2, z: 1.5790304}
   m_Center: {x: 0.0013058782, y: 0.5761652, z: 0.01393646}
 --- !u!1001 &2127270905265951032
 PrefabInstance:
@@ -1331,6 +1339,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6699006679444054636, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
 --- !u!1 &4280218763878949934 stripped
@@ -1354,5 +1366,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3545508, y: 1.5213625, z: 1.5790304}
+  m_Size: {x: 3.3545508, y: 1.2, z: 1.5790304}
   m_Center: {x: 0.0013058782, y: 0.5761652, z: 0.013951719}

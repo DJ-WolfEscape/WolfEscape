@@ -14,7 +14,7 @@ public class RoadSpawner : MonoBehaviour
         {
             roads = roads.OrderBy(r => r.transform.position.z).ToList();
         }
-
+        Shuffle();
     }
     public void MoveRoads()
     {
@@ -27,5 +27,31 @@ public class RoadSpawner : MonoBehaviour
         float newZ = roads[roads.Count - 1].transform.position.z + offset;
         moveroad.transform.position = new Vector3(0, 0, newZ);
         roads.Add(moveroad);
+    }
+    public void Shuffle()
+    {
+        List<int> placements = new List<int>();
+
+
+        for (int i = 1; i < 9; i++)
+        {
+            placements.Add(i * 30);
+        }
+
+        // Loop array
+        for (int i = 2; i < 10; i++)
+        {
+            int rnd = Random.Range(0, placements.Count);
+
+            roads[i].transform.position = new Vector3(0, 0, placements[rnd]);
+
+            Debug.Log(roads[i].transform.position.z.ToString());
+
+            Debug.Log(placements[rnd].ToString());
+
+            placements.RemoveAt(rnd);
+        }
+
+        roads = roads.OrderBy(r => r.transform.position.z).ToList();
     }
 }
