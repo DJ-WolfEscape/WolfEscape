@@ -9,13 +9,15 @@ O WolfEscape é um jogo feito no ambito da cadeira, do tipo infinity runner, ond
 * Pode encontrar o  **prototipo** em [prototipo](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/Prototipo).
 * Pode encontrar a   **distribuição de tarefas** em [docs/tasks.pdf](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/tasks.pdf).
 * Pode encontrar o   **diagrama de gantt** em [docs/gantt_chart.png](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/gantt_chart.png).
+* Pode encontrar um   **video do jogo** [aqui](https://www.youtube.com/watch?v=dOcoJ_Y9HGU).
+
 
 
 ## Galeria
-| | | 
-:---: | :---: |
-![Main Menu](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/main_menu.png) | ![Game](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/game.png) 
-Main Menu | Game
+| VIDEO DEMO | MAIN MENU| GAME | 
+:---: | :---: | :---: |
+[![Video_Preview](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/videopreview.png)](https://www.youtube.com/watch?v=dOcoJ_Y9HGU)| ![Main Menu](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/main_menu.png) | ![Game](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/game.png) 
+GAME PREVIEW | Main Menu | Game
 ## Tecnologias
 * [Unity](https://unity.com/)
 
