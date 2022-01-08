@@ -24,8 +24,6 @@ Main Menu | Game
 * [Low poly barriers](https://assetstore.unity.com/packages/3d/props/exterior/low-poly-barriers-pack-free-201810)
 
 
-* 
-
 ## Equipa Responsavel
 * Diogo Pereira A036751 [@diogopereira00](https://github.com/diogopereira00)
 * Daniel Dias A033098 [@Daniel-Ferreira-Dias](https://github.com/Daniel-Ferreira-Dias) 
