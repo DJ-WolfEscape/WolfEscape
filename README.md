@@ -18,7 +18,9 @@ Main Menu | Game
 * Unity
 
 ### Frameworks e Librarias
-* Mixamo
+* [Mixamo - Character Tommy](https://www.mixamo.com/)
+* [Low poly cars](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-cars-101798)
+* 
 
 ## Equipa Responsavel
 * Diogo Pereira A036751 [@diogopereira00](https://github.com/diogopereira00)
