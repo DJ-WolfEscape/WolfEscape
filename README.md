@@ -2,8 +2,7 @@
 Este repositorio serve para alojar o projeto para o M2 de avaliação da cadeira de Desenvolvimento de Jogos - Universidade da Maia. 
 
 ## Descrição
-O WolfEscape é um jogo feito no ambito da cadeira, do tipo infinity runner.
-
+O WolfEscape é um jogo feito no ambito da cadeira, do tipo infinity runner, onde o principal objetivo é evitar uma grande variedade de obstáculos, incluindo carros, autocarros, barreiras e árvores para alcançar uma pontuação elevada. Realiza-se num cenário de "inverno", com a paisagem e os bens visíveis a serem cobertos de neve. Há também "queijos" (moedas) espalhados pela estrada, que podem ser usados para comprar artigos cosméticos para o jogo.
 ## Organização do repositorio
 * Pode encontrar o **codigo fonte** em [wolfescape](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/wolfescape).
 * Pode encontrar a **executavel** em [wolfescape_windows](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/wolfescape_windows).
