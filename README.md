@@ -17,9 +17,13 @@ Main Menu | Game
 ## Tecnologias
 * Unity
 
-### Frameworks e Librarias
+### Assets utilizados
 * [Mixamo - Character Tommy](https://www.mixamo.com/)
 * [Low poly cars](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-cars-101798)
+* [Free food pack](https://assetstore.unity.com/packages/3d/props/food/free-casual-food-pack-mobile-vr-85884)
+* [Low poly barriers](https://assetstore.unity.com/packages/3d/props/exterior/low-poly-barriers-pack-free-201810)
+
+
 * 
 
 ## Equipa Responsavel
