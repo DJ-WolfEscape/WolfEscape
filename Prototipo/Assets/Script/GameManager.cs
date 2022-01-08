@@ -64,13 +64,13 @@ public class GameManager : MonoBehaviour
         estaNevar = PlayerPrefs.GetInt("nevar", 0);
         if(estaNevar == 1)
         {
-            snow.SetActive(true);
+            snow.SetActive(false);
             snowParticles.isOn = false;
 
         }
         else
         {
-            snow.SetActive(false);
+            snow.SetActive(true);
             snowParticles.isOn = true;
 
         }
@@ -92,12 +92,12 @@ public class GameManager : MonoBehaviour
         estaNevar = PlayerPrefs.GetInt("nevar", 0);
         if (estaNevar == 1)
         {
-            snow.SetActive(true);
+            snow.SetActive(false);
 
         }
         else
         {
-            snow.SetActive(false);
+            snow.SetActive(true);
 
         }
         if (perdeuJogo)
