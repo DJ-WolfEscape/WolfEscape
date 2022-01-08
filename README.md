@@ -15,7 +15,7 @@ O WolfEscape é um jogo feito no ambito da cadeira, do tipo infinity runner, ond
 ![Main Menu](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/main_menu.png) | ![Game](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/imgs/game.png) 
 Main Menu | Game
 ## Tecnologias
-* Unity
+* [Unity](https://unity.com/)
 
 ### Assets utilizados
 * [Mixamo - Character Tommy](https://www.mixamo.com/)
