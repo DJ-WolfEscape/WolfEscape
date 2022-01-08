@@ -7,6 +7,7 @@ O WolfEscape é um jogo feito no ambito da cadeira, do tipo infinity runner, ond
 * Pode encontrar o **codigo fonte** em [wolfescape](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/wolfescape).
 * Pode encontrar a **executavel** em [wolfescape_windows](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/wolfescape_windows).
 * Pode encontrar o  **prototipo** em [prototipo](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/Prototipo).
+* Pode encontrar a   **distribuição de tarefas** em [docs/tasks](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/tasks.pdf).
 
 
 ## Galeria
