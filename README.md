@@ -9,6 +9,8 @@ O WolfEscape é um jogo feito no ambito da cadeira, do tipo infinity runner, ond
 * Pode encontrar o  **prototipo** em [prototipo](https://github.com/DJ-WolfEscape/WolfEscape/tree/main/Prototipo).
 * Pode encontrar a   **distribuição de tarefas** em [docs/tasks.pdf](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/tasks.pdf).
 * Pode encontrar o   **diagrama de gantt** em [docs/gantt_chart.png](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/gantt_chart.png).
+* Pode encontrar o   **Game Design Document** em [docs/Game_Design_Document.pdf](https://github.com/DJ-WolfEscape/WolfEscape/blob/main/docs/Game%20Design%20Document.pdf).
+
 * Pode encontrar um   **video do jogo** [aqui](https://www.youtube.com/watch?v=dOcoJ_Y9HGU).
 
 
