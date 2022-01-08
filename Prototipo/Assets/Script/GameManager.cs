@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     private int estaNevar;
     public Toggle snowParticles;
     public GameObject menuLose;
-    public SceneAsset game;
     public static bool GameIsPaused;
 
     //counter score
@@ -204,7 +203,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(game.name);
+        SceneManager.LoadScene("SampleScene");
     }
 
     //SE PERDEU O JOGO
